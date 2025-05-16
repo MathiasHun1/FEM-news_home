@@ -10,7 +10,12 @@ function Header() {
   const pages = ['Home', 'New', 'Popular', 'Trending', 'Categories'];
 
   return (
-    <AppBar position="static" variant="outlined" sx={{ bgcolor: 'white' }}>
+    <AppBar
+      position="static"
+      variant="outlined"
+      color="transparent"
+      sx={{ border: 'none' }}
+    >
       <Container maxWidth="lg" disableGutters>
         <Toolbar
           disableGutters
