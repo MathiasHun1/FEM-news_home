@@ -61,7 +61,7 @@ const servicesData = [
 const pages = ['Home', 'New', 'Popular', 'Trending', 'Categories'];
 
 export default function App() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(true);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const toggleOpen = () => {
     setMobileMenuOpen(!mobileMenuOpen);
