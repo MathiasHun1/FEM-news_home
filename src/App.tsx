@@ -9,54 +9,115 @@ import {
   TableCell,
   TableHead,
   TableBody,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
 } from '@mui/material';
 import heroMob from '/image-web-3-mobile.jpg';
 import heroDesk from '/image-web-3-desktop.jpg';
 
 import Header from './components/Header';
+import { useState } from 'react';
+
+const newsData = [
+  {
+    title: 'Hydrogen vs Electric Cars?',
+    body: 'Will hydrogen-fueled cars ever catch up to EVs?',
+  },
+  {
+    title: 'The Downsides of AI Artistry',
+    body: 'What are the possible adverse effects of on-demand AI image generation?',
+  },
+  ,
+  {
+    title: 'Is VC Funding Drying Up?',
+    body: 'Private funding by VC firms is down 50% YOY. We take a look at what that means.',
+  },
+];
+
+const servicesData = [
+  {
+    imgSrc: '/image-retro-pcs.jpg',
+    number: '01',
+    title: 'Reviving Retro PCs',
+    body: 'What happens when old PCs are given modern upgrades?',
+  },
+  {
+    imgSrc: '/image-top-laptops.jpg',
+    number: '02',
+    title: 'Top 10 Laptops of 2022',
+    body: 'Our best picks for various needs and budgets.',
+  },
+  {
+    imgSrc: '/image-gaming-growth.jpg',
+    number: '03',
+    title: 'The Growth of Gaming',
+    body: 'How the pandemic has sparked fresh opportunities.',
+  },
+];
+
+const pages = ['Home', 'New', 'Popular', 'Trending', 'Categories'];
 
 export default function App() {
-  const newsData = [
-    {
-      title: 'Hydrogen vs Electric Cars?',
-      body: 'Will hydrogen-fueled cars ever catch up to EVs?',
-    },
-    {
-      title: 'The Downsides of AI Artistry',
-      body: 'What are the possible adverse effects of on-demand AI image generation?',
-    },
-    ,
-    {
-      title: 'Is VC Funding Drying Up?',
-      body: 'Private funding by VC firms is down 50% YOY. We take a look at what that means.',
-    },
-  ];
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(true);
 
-  const servicesData = [
-    {
-      imgSrc: '/image-retro-pcs.jpg',
-      number: '01',
-      title: 'Reviving Retro PCs',
-      body: 'What happens when old PCs are given modern upgrades?',
-    },
-    {
-      imgSrc: '/image-top-laptops.jpg',
-      number: '02',
-      title: 'Top 10 Laptops of 2022',
-      body: 'Our best picks for various needs and budgets.',
-    },
-    {
-      imgSrc: '/image-gaming-growth.jpg',
-      number: '03',
-      title: 'The Growth of Gaming',
-      body: 'How the pandemic has sparked fresh opportunities.',
-    },
-  ];
+  const toggleOpen = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
 
   return (
     <div className="h-dvh grid place-items-center">
       <Container maxWidth="lg" sx={{ pb: { xs: 10, md: 0 } }}>
-        <Header />
+        <Header toggleOpen={toggleOpen} />
+        <Drawer
+          variant="temporary"
+          open={mobileMenuOpen}
+          anchor="right"
+          onClose={toggleOpen}
+          sx={{ display: { xs: 'block', md: 'none', position: 'relative' } }}
+        >
+          <Box
+            sx={{
+              width: '265px',
+              paddingTop: '35%',
+            }}
+          >
+            <List>
+              {pages.map((item) => (
+                <ListItem
+                  key={item}
+                  disablePadding
+                  sx={{ marginBottom: '8px' }}
+                >
+                  <ListItemButton
+                    disableGutters
+                    sx={{ px: { xs: 3, sm: 5 } }}
+                    onClick={toggleOpen}
+                  >
+                    <ListItemText
+                      primary={item}
+                      slotProps={{ primary: { fontSize: '18px' } }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+
+            <Box
+              sx={{
+                width: '32px',
+                position: 'absolute',
+                top: '28px',
+                right: { xs: '20px', sm: '40px' },
+              }}
+              onClick={toggleOpen}
+            >
+              <img src="/icon-menu-close.svg" alt="" />
+            </Box>
+          </Box>
+        </Drawer>
         <main>
           <Grid container spacing={4} mb={8}>
             <Grid size={{ xs: 12, md: 8 }}>

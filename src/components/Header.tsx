@@ -6,7 +6,7 @@ import { Box, Button } from '@mui/material';
 import logo from '/logo.svg';
 import menu from '/icon-menu.svg';
 
-function Header() {
+function Header({ toggleOpen }: { toggleOpen: () => void }) {
   const pages = ['Home', 'New', 'Popular', 'Trending', 'Categories'];
 
   return (
@@ -26,7 +26,7 @@ function Header() {
             <img src={logo} alt="" />
           </Box>
 
-          <Box sx={{ display: { md: 'none' } }}>
+          <Box sx={{ display: { md: 'none' } }} onClick={toggleOpen}>
             <img src={menu} alt="" />
           </Box>
 
