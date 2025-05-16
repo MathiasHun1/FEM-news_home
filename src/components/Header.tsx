@@ -1,7 +1,7 @@
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button } from '@mui/material';
 
 import logo from '/logo.svg';
 import menu from '/icon-menu.svg';
